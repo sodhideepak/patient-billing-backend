@@ -1,5 +1,5 @@
 import { asynchandler } from "../utils/asynchandler.js";
-import { ApiError } from "../utils/Apierror.js";
+import { ApiError } from "../utils/ApiError.js";
 import { patient } from "../models/patient.models.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { log } from "console";
