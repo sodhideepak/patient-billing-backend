@@ -10,7 +10,7 @@ const router =Router()
 
 router.route("/register").post(registerpatient)
 
-router.route("/getpatient").get(getpatient)
+router.route("/getpatient/:_id").get(getpatient)
 
 router.route("/allpatients").get(allpatients)
 

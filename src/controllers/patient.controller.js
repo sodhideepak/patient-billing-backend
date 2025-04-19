@@ -67,9 +67,10 @@ const registerpatient = asynchandler(async (req,res)=>{
 
 const getpatient =asynchandler(async(req,res)=>{
 
+   console.log(req.params._id);
    
 
-    const patient_data= await patient.findById(req.body._id);
+    const patient_data= await patient.findById(req.params._id);
 
     // const year = req.user.DOB.getUTCFullYear();
     // const month = (req.user.DOB.getUTCMonth() + 1).toString().padStart(2, '0');
