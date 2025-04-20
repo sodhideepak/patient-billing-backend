@@ -71,7 +71,7 @@ const registerpatient = asynchandler(async (req,res)=>{
 
 const getpatient =asynchandler(async(req,res)=>{
 
-   console.log(req.params._id);
+//    console.log(req.params._id);
    
 
     const patient_data= await patient.findById(req.params._id);
