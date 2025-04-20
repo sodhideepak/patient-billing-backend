@@ -47,9 +47,15 @@ const patientschema= new mongoose.Schema({
         type:Number,
         required:true
     },
-    paymentMethod:{
-        type:String,
+    cash_in:{
+        type:Number,
         required:true
+    },
+    cash_out:{
+        type:Number,
+    },
+    paymentMethod:{
+        type:String,   
     }
     
 

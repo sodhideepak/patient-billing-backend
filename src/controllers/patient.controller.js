@@ -17,6 +17,8 @@ const registerpatient = asynchandler(async (req,res)=>{
         department,
         doctor,
         fees,
+        cash_in,
+        cash_out,
         paymentMethod,}= req.body
     
 
@@ -44,6 +46,8 @@ const registerpatient = asynchandler(async (req,res)=>{
         department,
         doctor,
         fees,
+        cash_in,
+        cash_out,
         paymentMethod,
        
 
