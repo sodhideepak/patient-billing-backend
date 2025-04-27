@@ -4,6 +4,17 @@ import { type } from "os";
 
 // structure of the data to be stored in database
 const patientschema= new mongoose.Schema({
+    
+    patient_id:{
+        type : Number,
+        required:true
+        
+    },
+    billingId:{
+        type : Number,
+        required:true
+        
+    },
     fullname:{
         type : String,
         required: true,

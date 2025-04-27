@@ -2,7 +2,22 @@ import { asynchandler } from "../utils/asynchandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { patient } from "../models/patient.models.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
+import { Counter } from "../models/counter.models.js";
 import { log } from "console";
+
+
+
+const getNextSequence = async (name) => {
+    const updatedCounter = await Counter.findByIdAndUpdate(
+      name,
+      { $inc: { seq: 1 } },
+      { new: true, upsert: true }
+    );
+    return updatedCounter.seq;
+  };
+
+
+
 
 const registerpatient = asynchandler(async (req,res)=>{
     
@@ -29,14 +44,18 @@ const registerpatient = asynchandler(async (req,res)=>{
     }
 
 
+    const PatientId = await getNextSequence("patientId");
+    const BillingId = await getNextSequence("billingId");
     const cleanDOB = new Date(DOB);
     console.log(cleanDOB);
     cleanDOB.setUTCHours(0, 0, 0, 0);
  
-    console.log(DOB);
+    console.log(PatientId,"this is id");
     console.log(cleanDOB);
     
     const Patient=await patient.create({
+        patient_id:PatientId,
+        billingId:BillingId,
         fullname,
         DOB:cleanDOB,
         phone_number,
