@@ -69,7 +69,6 @@ const registerpatient = asynchandler(async (req,res)=>{
         cash_out,
         paymentMethod,
        
-
     })
 
     const createdpatient =await patient.findById( Patient._id);
