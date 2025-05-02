@@ -125,7 +125,7 @@ const allpatients = asynchandler(async (req,res)=>{
  
     // const Patients = await patient.find();
     const total = await patient.countDocuments(); // total number of patients
-    const Patients = await patient.find().skip(skip).limit(limit);
+    const Patients = await patient.find().sort({ createdAt: -1 }).skip(skip).limit(limit);
 
   
 
