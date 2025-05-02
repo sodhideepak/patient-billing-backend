@@ -119,10 +119,13 @@ const getpatient =asynchandler(async(req,res)=>{
 
 const allpatients = asynchandler(async (req,res)=>{
 
-    
-    
-    const Patients = await patient.find();
-  
+    const page = parseInt(req.query.page) || 1;       // default page 1
+    const limit = parseInt(req.query.limit) || 10;    // default 10 items per page
+    const skip = (page - 1) * limit;
+ 
+    // const Patients = await patient.find();
+    const total = await patient.countDocuments(); // total number of patients
+    const Patients = await patient.find().skip(skip).limit(limit);
 
   
 
@@ -133,7 +136,12 @@ const allpatients = asynchandler(async (req,res)=>{
         new ApiResponse(
             200,
             
-            Patients
+            {
+            Patients,
+            currentPage:page,
+            totalPages:Math.ceil(total / limit),
+            totalPatients:total
+            }
             ,
             "Patients data fetched sucessfully")
     )
