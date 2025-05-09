@@ -119,13 +119,14 @@ const getpatient =asynchandler(async(req,res)=>{
 
 const allpatients = asynchandler(async (req,res)=>{
 
-    const page = parseInt(req.query.page) || 1;       // default page 1
-    const limit = parseInt(req.query.limit) || 10;    // default 10 items per page
-    const skip = (page - 1) * limit;
+    // const page = parseInt(req.query.page) || 1;       // default page 1
+    // const limit = parseInt(req.query.limit) || 10;    // default 10 items per page
+    // const skip = (page - 1) * limit;
  
-    // const Patients = await patient.find();
-    const total = await patient.countDocuments(); // total number of patients
-    const Patients = await patient.find().sort({ createdAt: -1 }).skip(skip).limit(limit);
+    // // const Patients = await patient.find();
+    // const total = await patient.countDocuments(); // total number of patients
+    // const Patients = await patient.find().sort({ createdAt: -1 }).skip(skip).limit(limit);
+    const Patients = await patient.find().sort({ createdAt: -1 });
 
   
 
@@ -137,10 +138,10 @@ const allpatients = asynchandler(async (req,res)=>{
             200,
             
             {
-            Patients,
-            currentPage:page,
-            totalPages:Math.ceil(total / limit),
-            totalPatients:total
+            Patients
+            // currentPage:page,
+            // totalPages:Math.ceil(total / limit),
+            // totalPatients:total
             }
             ,
             "Patients data fetched sucessfully")
