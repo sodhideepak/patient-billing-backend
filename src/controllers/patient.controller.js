@@ -37,6 +37,9 @@ const registerpatient = asynchandler(async (req,res)=>{
         paymentMethod,}= req.body
     
 
+    const name= fullname.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ')
+    console.log(name);
     
 
     if([fullname,email,phone_number,gender,DOB,department,doctor].some((field)=> field?.trim()==="")) {
@@ -56,7 +59,7 @@ const registerpatient = asynchandler(async (req,res)=>{
     const Patient=await patient.create({
         patient_id:PatientId,
         billingId:BillingId,
-        fullname,
+        fullname:name,
         DOB:cleanDOB,
         phone_number,
         gender,
